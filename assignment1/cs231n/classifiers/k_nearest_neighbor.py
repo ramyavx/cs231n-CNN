@@ -1,4 +1,5 @@
 import numpy as np
+import numpy.linalg as la #Ramya for calculating the Euclidian distance
 
 class KNearestNeighbor(object):
   """ a kNN classifier with L2 distance """
@@ -54,6 +55,7 @@ class KNearestNeighbor(object):
 
     Inputs:
     - X: A numpy array of shape (num_test, D) containing test data.
+    - X_train: A numpy array of shape (num_train, D) containing training data
 
     Returns:
     - dists: A numpy array of shape (num_test, num_train) where dists[i, j]
@@ -65,6 +67,8 @@ class KNearestNeighbor(object):
     dists = np.zeros((num_test, num_train))
     for i in range(num_test):
       for j in range(num_train):
+        dists[num_test,num_train] = (la.norm(X_test[i] - self.X_train[j]) ** 2)
+
         #####################################################################
         # TODO:                                                             #
         # Compute the l2 distance between the ith test point and the jth    #
